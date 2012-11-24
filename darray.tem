@@ -1,0 +1,219 @@
+//Patrick Whetsel
+//CSCI 2312 Fall 2012
+//darray.tem
+//template for darray class
+#include <cstdlib>
+#include <cassert>
+#include <iostream>
+
+template<typename T>
+darray<T>::darray(): cap(0), used(0), data(NULL) //default with initialization list
+{
+}
+
+template<typename T>	
+darray<T>::darray (const darray& d)//copy
+{
+	T* temp = new T[d.cap];
+		for (int i = 0; i < d.used; i++)
+		{
+			temp[i] = d.data[i];
+		}
+		
+		cap = d.cap;
+		used = d.used;
+		
+		//is this neccesary?
+	/*	if(d.data != NULL)
+		{
+			delete[] d.data;
+		}
+		if(data != NULL)
+		{
+			delete[] data;
+		}*/
+		data = temp;
+}
+
+template<typename T>
+darray<T>::darray (unsigned int size, unsigned int elementsUsed, T* dat)//parameterized
+{
+	cap = size;
+	used = elementsUsed;
+	data = dat;
+}
+
+//destructor
+template<typename T>
+darray<T>::~darray()
+{
+	delete [] data;
+	used=cap=0;
+	data=NULL;
+}
+
+//constant functions
+template<typename T>
+unsigned darray<T>::capacity () const
+{
+	return cap;
+}
+
+template<typename T>
+unsigned darray<T>::usedElements () const
+{
+	return used;
+}
+	
+//constant getter
+template<typename T>
+const T darray<T>::get(const unsigned int index) const
+{
+	assert(index <= used);
+	return data[index];
+}
+
+template<typename T>
+bool darray<T>::isEmpty()
+{
+	if (cap > 0)
+		return false;
+	else
+		return true;
+}
+	
+//mutators
+template<typename T>
+void darray<T>::erase ()
+{
+	used = 0;
+}
+
+template<typename T>
+void darray<T>::eraseOne (T&)
+{
+	--used;
+}
+
+template<typename T>
+void darray<T>::push (const T& item)
+{
+	if ( cap == 0)
+	{
+		T* temp = new T[1];
+		data = temp;
+		cap ++;
+		data[used] = item;
+		used ++;
+		return;
+	}
+	if ( used < cap )
+	{
+		data[used] = item;
+		++ used;
+		return;
+	}
+	if ( cap == used && cap > 0 )
+	{
+		cap *= 2;
+		T* temp = new T[cap];
+		for (int i = 0; i < used; i++)
+		{
+			temp[i] = data[i];
+		}
+		if(data != NULL)
+		{
+			delete[] data;
+		}
+		data = temp; 
+		data[used] = item;
+		++ used;
+		return;
+	}
+}
+
+template<typename T>
+T darray<T>::pop ()
+{
+	assert (used != 0);
+	assert (data != NULL);
+
+	if (used > 1)
+	{
+		used--;
+        return data[used];
+    }
+	if (used == 1)
+	{
+		T temp = data[used - 1];
+		delete [] data;
+		cap = 0;
+		used--;
+		data = NULL;
+		return temp;
+	}
+}
+
+template<typename T>
+void darray<T>::insert (const T insertee, const unsigned int index)
+{
+	data[index] = insertee;
+}
+
+//template<typename T>	
+//const T* darray::find (const T& query) const
+//{
+//	T* p = 0;
+//	for (int i = 0; i < used; i++)
+//	{
+//		if(data[i] == query)
+//			p = ???//finsih this
+//	}
+//	return p;
+//}
+
+//operators
+template<typename T>
+darray<T>& darray<T>::operator = (const darray& d)
+{
+	if (this != &d)
+	{
+		T* temp = new T[d.cap];
+		for (int i = 0; i < d.used; i++)
+		{
+			temp[i] = d.data[i];
+		}
+		used = d.used;
+		cap = d.cap;
+		if(d.data != NULL)
+		{
+			delete[] d.data;
+		}
+		if(data != NULL)
+		{
+			delete[] data;
+		}
+		data = temp;
+	}
+	return *this;
+}
+
+template<typename T>
+T darray<T>::operator [] (const unsigned index) const
+{
+	assert (index <= used);
+	return data[index];
+}
+
+template<typename T>
+std::ostream& operator << (std::ostream& out, const darray<T>& d)
+{
+	std::cout << '(';
+	int i;
+	for (i = 0; i<d.used-1; i++)
+	{
+		std::cout << d.data[i] << ',';
+	}
+	std::cout << d.data[i] << ')';
+	return out;
+}

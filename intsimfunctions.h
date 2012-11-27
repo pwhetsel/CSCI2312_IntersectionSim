@@ -10,6 +10,7 @@
 #include "darray.h"
 #include "light.h"
 #include "vehicle.h"
+#include "rand_num.h"
 
 #ifndef _intsimfunctions_h
 #define _projectfunctions_h

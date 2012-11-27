@@ -22,11 +22,14 @@ void intsimfunctions::greeting()
 	int in;
 	std::cin >> in;
 }
-void intsimfunctions::generate_vehicle(std::queue<vehicle>, rand_num)
+void intsimfunctions::generate_vehicle(std::queue<vehicle>line, rand_num gen)
 {
-
+	std::string type = gen.generate_vehicle();
+	int time = gen.generate_pass_time (type);
+	vehicle temp(time, type);
+	line.push(temp);
 }
-void intsimfunctions::vehicle_passes(std::queue<vehicle>,darray<vehicle>, int)
+void intsimfunctions::vehicle_passes(std::queue<vehicle> line, darray<vehicle> parking, int time_left)
 {
 
 }

@@ -24,18 +24,60 @@ void intsimfunctions::greeting()
 }
 void intsimfunctions::generate_vehicle(std::queue<vehicle>line, rand_num gen)
 {
-	std::string type = gen.generate_vehicle();
-	int time = gen.generate_pass_time (type);
-	vehicle temp(time, type);
-	line.push(temp);
+	//50% chance of vehicle being generated
+	int chance = rand() % 2;
+	if (chance < 1)
+	{
+		std::string type = gen.generate_vehicle();
+		int time = gen.generate_pass_time (type);
+		vehicle temp(time, type);
+		line.push(temp);
+	}
 }
 void intsimfunctions::vehicle_passes(std::queue<vehicle> line, darray<vehicle> parking, int time_left)
 {
-
+	vehicle temp = line.front();
+	if (temp.get_time_to_pass() <= time_left)
+	{
+		parking.push(temp);
+		line.pop();
+	}
 }
-void intsimfunctions::results(std::queue<vehicle>,std::queue<vehicle>,std::queue<vehicle>,std::queue<vehicle>,darray<vehicle>)
+void intsimfunctions::results(std::queue<vehicle>line1 ,std::queue<vehicle> line2 ,std::queue<vehicle> line3,std::queue<vehicle> line4,darray<vehicle> parking)
 {
-
+	unsigned arrived = 0;
+	unsigned passed = 0;
+	unsigned waiting = 0;
+	
+	while (!line1.empty())
+	{
+		line1.pop();
+		++waiting;
+	}
+	while (!line2.empty())
+	{
+		line2.pop();
+		++waiting;
+	}
+	while (!line3.empty())
+	{
+		line3.pop();
+		++waiting;
+	}
+	while (!line4.empty())
+	{
+		line4.pop();
+		++waiting;
+	}
+	while (!parking.isEmpty())
+	{
+		parking.erase();
+		++passed;
+	}
+	arrived = passed + waiting;
+	std::cout << "\nArrived: " << arrived;
+	std::cout << "\nPassed: " << passed;
+	std::cout << "\nWaiting: " << waiting;
 }
 int intsimfunctions::exit_program()
 {

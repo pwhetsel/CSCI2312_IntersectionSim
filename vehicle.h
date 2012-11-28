@@ -11,7 +11,11 @@
 class vehicle
 {
 public:
-	//constructor
+	//default constructor
+	vehicle();
+	//copy constructor
+	vehicle(const vehicle&);
+	//parameterized constructor
 	vehicle(int, std::string);
 	
 	//Pre:int to set time_to_pass

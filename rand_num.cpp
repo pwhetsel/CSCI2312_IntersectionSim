@@ -11,11 +11,11 @@ rand_num::rand_num (int seed_in)
 	srand(seed);
 }
 
-int rand_num::generate_vehicle ()
+std::string rand_num::generate_vehicle()
 {
-	int CAR = 1;
-	int TRUCK = 2;
-	int BUS = 3;
+	std::string CAR = "CAR";
+	std::string TRUCK = "TRUCK";
+	std::string BUS = "BUS";
 	int CAR_CHANCE = 70;
 	int TRUCK_CHANCE = 90;
 	int BUS_CHANCE = 100;

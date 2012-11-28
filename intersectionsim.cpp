@@ -18,7 +18,7 @@
 
 int main ()
 {
-	const int _SIM_TIME = 300;
+	const int SIM_TIME = 20;
 	rand_num generator(time(NULL));
 	light northsouth(true,false,0,0);
 	light eastwest(false,true,0,0);
@@ -30,13 +30,12 @@ int main ()
 
 	intsimfunctions::greeting();
 
-	for(int i; i <= _SIM_TIME; ++i)
+	for(int i = 0; i <= SIM_TIME; ++i)
 	{
 		intsimfunctions::generate_vehicle(north, generator);
 		intsimfunctions::generate_vehicle(south, generator);
 		intsimfunctions::generate_vehicle(east, generator);
 		intsimfunctions::generate_vehicle(west, generator);
-
 
 		try
 		{
@@ -58,11 +57,11 @@ int main ()
 				throw accident;
 			}
 		}
-		catch (bool accident)
+		catch (bool accident_happened)
 		{
-			if (accident == true)
+			if (accident_happened == true)
 			{
-				std::cout << "\nError: There has been an accident!";
+				std::cout << "\nError: There has been an accident! (Light is green in four directions)";
 				return EXIT_FAILURE;
 			}
 		}

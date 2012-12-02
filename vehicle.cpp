@@ -12,8 +12,8 @@ vehicle::vehicle():type("NULL"), time_to_pass(100)
 
 vehicle::vehicle(const vehicle& passed)
 {
-	type = this->type;
-	time_to_pass = this->time_to_pass;
+	type = passed.type;
+	time_to_pass = passed.time_to_pass;
 }
 
 vehicle::vehicle(int time, std::string kind)

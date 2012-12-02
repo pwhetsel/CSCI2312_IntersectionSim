@@ -90,7 +90,7 @@ void darray<T>::erase ()
 }
 
 template<typename T>
-void darray<T>::eraseOne (T&)
+void darray<T>::eraseOne ()
 {
 	--used;
 }

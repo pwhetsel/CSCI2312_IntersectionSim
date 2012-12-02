@@ -5,9 +5,9 @@
 
 #include "light.h"
 
-//Green light time is 20 seconds of green light, 2 seconds of yellow light
-unsigned GRN_TIME = 22;
+unsigned GRN_TIME = 20;
 unsigned RED_TIME = 20;
+unsigned YELLOW_TIME = 2;
 
 
 light::light (bool green_in,bool red_in,int greent,int redt)
@@ -16,6 +16,8 @@ light::light (bool green_in,bool red_in,int greent,int redt)
 	green_timer = greent;
 	green = green_in;
 	red = red_in;
+	yellow_time = 0;
+	yellow = false;
 }
 
 void light::set_red_timer (unsigned in)
@@ -64,9 +66,7 @@ int light::green_left ()
 	temp = GRN_TIME - green_timer;
 	return temp;
 }
-//Pre:none
-//Post:light that is on has timer increased by one, if timer max is reached light is switched off
-//and light that is off is turned on.
+
 void light::iterate_timer ()
 {
 	if (green == true)

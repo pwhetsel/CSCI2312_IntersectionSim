@@ -16,9 +16,9 @@ std::string rand_num::generate_vehicle()
 	std::string CAR = "CAR";
 	std::string TRUCK = "TRUCK";
 	std::string BUS = "BUS";
-	int CAR_CHANCE = 70;
-	int TRUCK_CHANCE = 90;
-	int BUS_CHANCE = 100;
+	unsigned CAR_CHANCE = 70;
+	unsigned TRUCK_CHANCE = 90;
+	unsigned BUS_CHANCE = 100;
 
 	unsigned temp = rand() % 100;
 	
@@ -48,6 +48,7 @@ int rand_num::generate_pass_time (std::string type_in)
 	}
 	else
 	{
+		//type == truck
 		int temp = rand() % 4 + 2;
 		return temp;
 	}

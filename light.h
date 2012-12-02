@@ -3,6 +3,8 @@
 //light.h
 //class prototype for traffic light class
 
+#include <iostream>
+
 #ifndef _light_h
 #define _light_h
 
@@ -47,8 +49,10 @@ public:
 private:
 	int red_timer;
 	int green_timer;
+	int yellow_time;
 	bool green;
 	bool red;
+	bool yellow;
 };
 
 #endif

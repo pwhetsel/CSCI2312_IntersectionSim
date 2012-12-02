@@ -45,7 +45,7 @@ public:
 	void erase ();
 	//Pre: none
 	//Post: last entered element will be overwitten in next push
-	void eraseOne (T&);
+	void eraseOne ();
 	//Pre: item to be pushed to array
 	//Post: item is pushed to next open element, capacity is doubled if array is full
 	void push (const T&);

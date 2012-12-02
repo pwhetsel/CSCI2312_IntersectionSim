@@ -2,7 +2,7 @@
 //CSCI 2312 Fall 2012
 //intersectionsim.cpp
 //This program simulates the traffic arriving and traveling past a traffic light
-//in four directions for 300 seconds.  There is a 50% chance of a vehicle arriving
+//in four directions for 300 seconds.  There is a 33% chance of a vehicle arriving
 //in each of the 4 directions every second, and if a vehicle arrives there is a 70%
 //chance it is a car, a 20% chance it is a truck, and a 10% chance it is a bus.  The
 //program then outputs the results of the simulation in a column format.
@@ -18,7 +18,7 @@
 
 int main ()
 {
-	const int SIM_TIME = 3;
+	const int SIM_TIME = 300;
 	rand_num generator(time(NULL));
 	light northsouth(true,false,0,0);
 	light eastwest(false,true,0,0);
@@ -70,6 +70,5 @@ int main ()
 	}
 
 	intsimfunctions::results(north, south, east, west, freeparking);
-
 	intsimfunctions::exit_program();
 }

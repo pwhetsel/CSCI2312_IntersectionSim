@@ -17,7 +17,6 @@ public:
 	vehicle(const vehicle&);
 	//parameterized constructor
 	vehicle(int, std::string);
-	
 	//Pre:int to set time_to_pass
 	//Post: time_to_pass is set to supplied int
 	void set_time_to_pass(int);

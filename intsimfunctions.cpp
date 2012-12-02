@@ -22,28 +22,58 @@ void intsimfunctions::greeting()
 	int in;
 	std::cin >> in;
 }
-void intsimfunctions::generate_vehicle(std::queue<vehicle>line, rand_num gen)
+void intsimfunctions::generate_vehicle(std::queue<vehicle> &line, rand_num gen)
 {
 	//50% chance of vehicle being generated
 	int chance = rand() % 2;
 	if (chance < 1)
 	{
+		//debug
+		std::cout << "\nDebug: A car is generated";
+		//debug
 		std::string type = gen.generate_vehicle();
+		//debug
+		std::cout << "\nDebug: Its type is: " << type;
+		//debug
 		int time = gen.generate_pass_time (type);
+		//debug
+		std::cout << "\nDebug: Its pass_time is: " << time;
+		//debug
 		vehicle temp(time, type);
 		line.push(temp);
+		//debug
+		std::cout << "\nDebug: The car has been pushed";
+		//debug
 	}
 }
-void intsimfunctions::vehicle_passes(std::queue<vehicle> line, darray<vehicle> parking, int time_left)
+void intsimfunctions::vehicle_passes(std::queue<vehicle> &line, darray<vehicle> &parking, int time_left)
 {
-	vehicle temp = line.front();
-	if (temp.get_time_to_pass() <= time_left)
+	//debug
+	std::cout << "\nDebug: vehicle_passes is called";
+	//debug
+	//debug
+		std::cout << "\nDebug: size of line is: " << (int) line.size();
+		//debug
+	if ( line.size() > 0 )
 	{
-		parking.push(temp);
-		line.pop();
+		//debug
+		std::cout << "\nDebug: vehicle_passes !line.empty";
+		//debug
+		vehicle temp = line.front();
+		//debug
+		std::cout << "\nDebug: temp.time to pass: " << (int) temp.get_time_to_pass() << " time left: " << (int) time_left;
+		//debug
+		if (temp.get_time_to_pass() <= time_left)
+		{
+			//debug
+			std::cout << "\nDebug: A car passes to free_parking";
+			//debug
+			parking.push(temp);
+			line.pop();
+		}
 	}
 }
-void intsimfunctions::results(std::queue<vehicle>line1 ,std::queue<vehicle> line2 ,std::queue<vehicle> line3,std::queue<vehicle> line4,darray<vehicle> parking)
+void intsimfunctions::results(std::queue<vehicle> &line1 ,std::queue<vehicle> &line2 ,std::queue<vehicle> &line3,std::queue<vehicle> &line4,darray<vehicle> &parking)
 {
 	unsigned arrived = 0;
 	unsigned passed = 0;
@@ -75,14 +105,21 @@ void intsimfunctions::results(std::queue<vehicle>line1 ,std::queue<vehicle> line
 		++passed;
 	}
 	arrived = passed + waiting;
-	std::cout << "\nArrived: " << arrived;
-	std::cout << "\nPassed: " << passed;
-	std::cout << "\nWaiting: " << waiting;
+	std::cout << "\n";
+	std::cout << std::setw(20) << std::setfill(' ') << std::left << "Arrived";
+	std::cout << std::setw(20) << std::setfill(' ') << std::left << "Passed";
+	std::cout << std::setw(20) << std::setfill(' ') << std::left << "Waiting";
+	std::cout << "\n";
+	std::cout << std::setw(20) << std::setfill(' ') << std::left << arrived;
+	std::cout << std::setw(20) << std::setfill(' ') << std::left << passed;
+	std::cout << std::setw(20) << std::setfill(' ') << std::left << waiting;
 }
 int intsimfunctions::exit_program()
 {
 	std::cout << "\nPlease press any key followed by enter to exit the program.\n";
-	int in;
-	std::cin >> in;
+	int temp;
+	std::cin >> temp;
+
+
 	return EXIT_SUCCESS;
 }

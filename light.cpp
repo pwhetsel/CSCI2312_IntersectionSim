@@ -61,7 +61,7 @@ bool light::get_green ()
 int light::green_left ()
 {
 	int temp;
-	temp = green_timer - GRN_TIME;
+	temp = GRN_TIME - green_timer;
 	return temp;
 }
 //Pre:none

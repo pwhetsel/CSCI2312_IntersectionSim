@@ -18,7 +18,7 @@
 
 int main ()
 {
-	const int SIM_TIME = 20;
+	const int SIM_TIME = 3;
 	rand_num generator(time(NULL));
 	light northsouth(true,false,0,0);
 	light eastwest(false,true,0,0);

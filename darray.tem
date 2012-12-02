@@ -22,16 +22,6 @@ darray<T>::darray (const darray& d)//copy
 		
 		cap = d.cap;
 		used = d.used;
-		
-		//is this neccesary?
-	/*	if(d.data != NULL)
-		{
-			delete[] d.data;
-		}
-		if(data != NULL)
-		{
-			delete[] data;
-		}*/
 		data = temp;
 }
 
@@ -160,17 +150,17 @@ void darray<T>::insert (const T insertee, const unsigned int index)
 	data[index] = insertee;
 }
 
-//template<typename T>	
-//const T* darray::find (const T& query) const
-//{
-//	T* p = 0;
-//	for (int i = 0; i < used; i++)
-//	{
-//		if(data[i] == query)
-//			p = ???//finsih this
-//	}
-//	return p;
-//}
+template<typename T>	
+const T* darray<T>::find (const T& query) const
+{
+	T* p = 0;
+	for (int i = 0; i < used; i++)
+	{
+		if(data[i] == query)
+			p = data[i];
+	}
+	return p;
+}
 
 //operators
 template<typename T>

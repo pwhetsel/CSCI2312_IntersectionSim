@@ -16,8 +16,7 @@ void intsimfunctions::greeting()
 	std::cout << "20% chance it is a truck, and a 10% chance it\n";
 	std::cout << "is a bus.  The program then outputs the results\n";
 	std::cout << "of the simulation in a column format. \n";
-	std::cout << "Please Press any key followed by enter to begin\n";
-	std::cout << "the simulation. ";
+	std::cout << "Please press enter to begin the simulation.\n";
 
 	std::string str;
 	getline(std::cin,str);
@@ -90,7 +89,7 @@ void intsimfunctions::results(std::queue<vehicle> &line1 ,std::queue<vehicle> &l
 }
 int intsimfunctions::exit_program()
 {
-	std::cout << "\n\nPlease press any key followed by enter to exit the program.\n";
+	std::cout << "\n\nPlease press enter to exit the program.\n";
 	std::string str;
 	getline(std::cin,str);
 

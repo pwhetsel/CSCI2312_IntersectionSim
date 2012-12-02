@@ -55,9 +55,9 @@ public:
 	//Pre: none
 	//Post: supplied element is inserted in specified position
 	void insert (const T, const unsigned int);
-	//Pre: none
-	//Post: none
-	/*const T* find (const T&) const;*/
+	//Pre: Value to search for in darray
+	//Post: Pointer to element holding value is returned
+	const T* find (const T&) const;
 
 	//overloaded operators
 	T operator [] (unsigned) const;
